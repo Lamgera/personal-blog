@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- TO DO: реализовать смену темы  -->
+    <title>Your Personal BLog</title>
+    <link rel="icon" href="./src/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/pages/globals.css" />
+    <link rel="stylesheet" href="./src/pages/variables.css" />
+  </head>
+  <body>
+    <header class="header decorated-zone">
+      <a
+        href="/home"
+        class="header__home-link nav-link"
+        aria-label="Вернуться на главную страницу"
+      >
+        <div class="icon-decorated">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            style="
+              shape-rendering: geometricPrecision;
+              text-rendering: geometricPrecision;
+              image-rendering: optimizeQuality;
+              fill-rule: evenodd;
+              clip-rule: evenodd;
+            "
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:xodm="http://www.corel.com/coreldraw/odm/2003"
+          >
+            <g id="Layer_x0020_1">
+              <path
+                class="icon-fill"
+                d="M135.58 1671.86c-92.1,-29.33 -144.47,-125.54 -144.47,-218.79l0 -786.33c0,-47.27 71.79,-47.27 71.79,0l0 786.33c0,39.68 12.39,80.04 37.84,110.86 21.93,26.54 52.6,44.42 87.56,44.42l0.48 0c34.96,0 65.63,-17.88 87.56,-44.42 25.46,-30.82 37.85,-71.19 37.85,-110.87l0 -1359.2c0,-64.62 52.59,-117.21 117.21,-117.21l1086.84 0c64.62,0 117.21,52.59 117.21,117.21l0 1326.84c0,143.15 -116.44,259.43 -259.57,259.43 -125.11,0 -1217.6,11.15 -1240.3,-8.28zm1335.12 -1076.15l-434.04 0c-10.74,0 -19.58,-8.7 -19.58,-19.58l0 -298.19c0,-10.88 8.84,-19.58 19.58,-19.58l434.04 0c10.74,0 19.58,8.7 19.58,19.58l0 298.19c0,10.88 -8.7,19.58 -19.58,19.58zm-414.45 -39.16l394.87 0 0 -259.03 -394.87 0 0 259.03zm-200.83 -252.64l-312.74 0c-25.81,0 -25.81,-39.16 0,-39.16l312.74 0c25.72,0 25.87,39.16 0,39.16zm0 142.77l-312.74 0c-25.81,0 -25.81,-39.16 0,-39.16l312.74 0c25.72,0 25.87,39.16 0,39.16zm-44.19 142.77l-268.55 0c-25.81,0 -25.81,-39.16 0,-39.16l268.55 0c25.81,0 25.81,39.16 0,39.16zm165.48 498.89l-434.03 0c-10.88,0 -19.58,-8.84 -19.58,-19.58l0 -298.19c0,-10.87 8.7,-19.58 19.58,-19.58l434.03 0c10.74,0 19.58,8.7 19.58,19.58l0 298.19c0,10.74 -8.7,19.58 -19.58,19.58zm-414.45 -39.16l394.87 0 0 -259.03 -394.87 0 0 259.03zm908.45 32.91l-312.74 0c-25.74,0 -25.74,-39.16 0,-39.16l312.74 0c25.69,0 25.84,39.16 0,39.16zm0 -142.77l-312.74 0c-25.74,0 -25.74,-39.16 0,-39.16l312.74 0c25.69,0 25.84,39.16 0,39.16zm0 -142.91l-268.56 0c-25.77,0 -25.77,-39.16 0,-39.16l268.56 0c25.72,0 25.87,39.16 0,39.16zm-22.03 470.6l-887.23 0c-25.78,0 -25.78,-39.16 0,-39.16l887.23 0c25.74,0 25.74,39.16 0,39.16zm-62.96 180.17l-761.45 0c-25.78,0 -25.78,-39.16 0,-39.16l761.45 0c25.69,0 25.84,39.16 0,39.16z"
+                id="id_101"
+              ></path>
+              <path
+                class="icon-fill"
+                d="M201.65 1546.99c-19.82,0 -35.9,-16.09 -35.9,-35.89l0 -930.07c0,-47.27 71.8,-47.27 71.8,0l0 930.07c0,19.82 -16.09,35.89 -35.9,35.89z"
+                id="id_102"
+              ></path>
+            </g>
+          </svg>
+        </div>
+        <span class="text">Your Personal Blog</span>
+      </a>
+      <button class="text header__login-button">Sing in / Sign up</button>
+    </header>
+
+    <div id="app-container" class="app-container">
+      <section id="page-home" class="page page--active" data-page="home">
+        <main class="page__main">
+          <div aria-hidden="true"></div>
+          <span class="text">EST. 2026</span>
+          <h1 class="h1 text">Your Personal Blog</h1>
+          <p class="text">Ваш личный блог</p>
+          <button class="button" data-navigate="reading">Читать</button>
+          <button class="button" data-navigate="editing">Редактировать</button>
+          <div aria-hidden="true"></div>
+        </main>
+      </section>
+
+      <section
+        id="page-reading"
+        class="page page--two-column"
+        data-page="reading"
+      >
+        <aside class="readable-articles">
+          <!-- TO DO: реализовать счётчик количества статей -->
+          <p>Статей - <span class="articles-count">1</span></p>
+          <ul class="readable-articles__list">
+            <!-- Статьи будут генерироваться из template -->
+          </ul>
+        </aside>
+        <main class="page__main">
+          <article class="article-content">
+            <!-- Контент статьи будет подгружаться сюда -->
+            <div class="article-placeholder">
+              <div class="icon-decorated">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14,2 14,8 20,8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10,9 9,9 8,9"></polyline>
+                </svg>
+              </div>
+              <p>Выберите статью для чтения</p>
+            </div>
+          </article>
+        </main>
+      </section>
+
+      <section
+        id="page-editing"
+        class="page page--two-column"
+        data-page="editing"
+      >
+        <aside class="editable-articles">
+          <!-- TO DO: реализовать счётчик количества статей -->
+          <p>Ваших статей - <span class="articles-count">1</span></p>
+          <button class="add-button">+ Добавить</button>
+          <ul class="editable-articles__list">
+            <!-- Статьи будут генерироваться из template -->
+          </ul>
+        </aside>
+        <main id="page__main">
+          <div class="editing-page__placeholder">
+            <div class="icon-decorated">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                ></path>
+                <polyline points="14,2 14,8 20,8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10,9 9,9 8,9"></polyline>
+              </svg>
+            </div>
+            <p>Выберите одну из ваших статей для редактирования</p>
+            <p>или нажмите <strong>+ Добавить</strong> для создания новой</p>
+          </div>
+        </main>
+      </section>
+    </div>
+
+    <footer class="footer decorated-zone">
+      <span class="text">© 2026 Your Personal Blog</span>
+      <span class="text">Made by Lamgera & Evgeniy Carrot</span>
+    </footer>
+
+    <template id="article-reading-template">
+      <li class="readable-articles__element">
+        <button data-article-id="{{id}}">
+          <p class="article-title">{{title}}</p>
+          <span class="article-date">{{date}}</span>
+        </button>
+      </li>
+    </template>
+
+    <template id="article-editing-template">
+      <li class="editable-articles__element">
+        <button data-article-id="{{id}}">
+          <p class="article-title">{{title}}</p>
+          <span class="article-date">{{date}}</span>
+        </button>
+        <button class="edit-button" data-action="edit" data-article-id="{{id}}">
+          Изменить
+        </button>
+        <button
+          class="delete-button"
+          data-action="delete"
+          data-article-id="{{id}}"
+        >
+          Удалить
+        </button>
+      </li>
+    </template>
+
+    <template id="article-content-template">
+      <article class="article-content">
+        <div class="article__title">
+          <h2>{{title}}</h2>
+          <span>Опубликовано {{date}}</span>
+        </div>
+        <div class="article__body">{{content}}</div>
+      </article>
+    </template>
+  </body>
+</html>
