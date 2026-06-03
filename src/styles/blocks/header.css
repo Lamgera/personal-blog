@@ -1,0 +1,25 @@
+.header {
+  border-bottom: var(--border-width) solid var(--text-color);
+}
+
+.header__home-link{
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing)*2);
+  text-decoration: none;
+}
+
+.icon-decorated {
+  inline-size: calc(var(--spacing)*7);
+  block-size: calc(var(--spacing)*7);
+}
+
+.icon-decorated > svg {
+  stroke-width: var(--border-width);
+  inline-size: calc(var(--spacing)*5);
+  block-size: calc(var(--spacing)*5);
+}
+
+.header__login-button {
+  border-bottom: var(--border-width) solid var(--text-color);
+}

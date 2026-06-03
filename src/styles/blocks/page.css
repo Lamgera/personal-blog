@@ -1,0 +1,42 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  font-family: var(--main-font);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.main-text {
+  font-family: var(--secondary-font);
+}
+
+.decorated-zone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: calc(var(--spacing)*6);
+  height: calc(var(--spacing)*14);
+  flex-shrink: 0; 
+  background-color: var(--accent-color);
+}
+
+.icon-decorated {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--muted-background);
+  border: var(--border-width) solid var(--text-color);
+  /* stroke-width: 2px; */
+  /* TO DO: дописать свойства для плейсхолдеров здесь, чтобы не переопределять их на 2х разных страницах */
+}
+
+.icon-decorated > svg {
+  stroke: var(--muted-text);
+}
+
+.muted-text {
+  color: var(--muted-text);
+}

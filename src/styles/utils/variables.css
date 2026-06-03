@@ -1,0 +1,20 @@
+:root {
+  --main-font: "DM Sans", system-ui, sans-serif;
+  --secondary-font: "Inter", system-ui, sans-serif;
+  --background-color: #f8f8f6;
+  --text-color: #111110;
+  --accent-color: #ffffff;
+  --muted-background: #eceae2;
+  --muted-text: #6b6b65;
+  --spacing: .25rem;
+  --container-sm: 24rem;
+  --border-width: 1px;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+  --background-color: #111110;
+  --text-color: #fff;
+  --accent-color: #f8f8f6;
+  }
+} */

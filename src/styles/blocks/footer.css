@@ -1,0 +1,4 @@
+.footer {
+  border-top: var(--border-width) solid var(--text-color);
+  color: var(--muted-text);
+}
