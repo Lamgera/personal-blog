@@ -1,0 +1,4 @@
+db.url= ENTER_POSTGRES_URL
+db.user= ENTER_YOUR_USER_NAME_HERE
+db.pass= ENTER_YOUR_PASSWORD_HERE
+db.driver= org.postgresql.Driver
