@@ -22,4 +22,5 @@
 
 .header__login-button {
   border-bottom: var(--border-width) solid var(--text-color);
+  cursor: pointer;
 }
