@@ -7,32 +7,34 @@
     <meta name="color-scheme" content="light dark" />
     <!-- TO DO: реализовать смену темы  -->
     <title>Your Personal BLog</title>
-    <link rel="icon" href="frontend/src/images/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href="frontend/src/images/favicon.svg"
+      type="image/svg+xml"
+    />
     <link rel="stylesheet" href="frontend/src/styles/index.css" />
   </head>
   <body class="page">
     <header class="header decorated-zone">
       <a
         href="#home"
-        class="header__home-link"
+        class="header__home-link header__home-link--disabled"
         aria-label="Вернуться на главную страницу"
+        aria-disabled="true"
+        tabindex="-1"
       >
+      <!-- чтобы сделать кнопку активной, уберите класс header__home-link--disabled и атрибуты aria-disabled и tabindex -->
         <div class="icon-decorated">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                ></path>
-                <polyline points="14,2 14,8 20,8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10,9 9,9 8,9"></polyline>
-              </svg>
-            </div>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            ></path>
+            <polyline points="14,2 14,8 20,8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10,9 9,9 8,9"></polyline>
+          </svg>
+        </div>
         <span class="icon-title">Your Personal Blog</span>
       </a>
       <button class="header__login-button">Sing in / Sign up</button>
@@ -44,20 +46,22 @@
           <div class="home__content-decor" aria-hidden="true"></div>
           <span class="muted-text">EST. 2026</span>
           <h1 class="home__title">Your Personal Blog</h1>
-          <p class="home__main-text muted-text">Заметки, размышления и тексты любознательного ума</p>
+          <p class="home__main-text muted-text">
+            Заметки, размышления и тексты любознательного ума
+          </p>
           <div class="home__nav-buttons">
-            <button class="read__nav-button" data-navigate="reading">Читать статьи</button>
-            <button class="edit__nav-button" data-navigate="editing">Редактировать</button>
+            <button class="read__nav-button" data-navigate="reading">
+              Читать статьи
+            </button>
+            <button class="edit__nav-button" data-navigate="editing">
+              Редактировать
+            </button>
           </div>
           <div class="home__content-decor" aria-hidden="true"></div>
         </main>
       </section>
 
-      <section
-        id="read"
-        class="two-column visually-hidden"
-        data-page="read"
-      >
+      <section id="read" class="two-column visually-hidden" data-page="read">
         <aside class="readable-articles">
           <!-- TO DO: реализовать счётчик количества статей -->
           <p>Статей - <span class="articles-count">1</span></p>
@@ -93,11 +97,7 @@
         </main>
       </section>
 
-      <section
-        id="edit"
-        class="two-column visually-hidden"
-        data-page="edit"
-      >
+      <section id="edit" class="two-column visually-hidden" data-page="edit">
         <aside class="editable-articles">
           <!-- TO DO: реализовать счётчик количества статей -->
           <p>Ваших статей - <span class="articles-count">1</span></p>
@@ -134,9 +134,94 @@
     </div>
 
     <footer class="footer decorated-zone">
-      <span class="text">© 2026 Your Personal Blog</span>
-      <span class="text">Made by <a href="https://github.com/Lamgera" target="_blank">Lamgera</a> & <a href="https://github.com/EvgeniyCarrot" target="_blank">Evgeniy Carrot</a></span>
+      <span class="text footer__left">© 2026 Your Personal Blog</span>
+      <span class="text footer__right"
+        >Made by
+        <a href="https://github.com/Lamgera" target="_blank">Lamgera</a> &
+        <a href="https://github.com/EvgeniyCarrot" target="_blank"
+          >Evgeniy Carrot</a
+        ></span
+      >
     </footer>
+
+    <!-- Модальное окно входа -->
+    <div class="modal-overlay" id="login-modal">
+      <div
+        class="modal"
+        role="dialog"
+        aria-labelledby="modal-title"
+        aria-modal="true"
+      >
+        <button class="modal__close" aria-label="Закрыть окно">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <h2 class="modal__title" id="modal-title">Вход в аккаунт</h2>
+
+        <form class="login-form" id="login-form" novalidate>
+          <div class="form-field">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="your@email.com"
+              required
+              autocomplete="email"
+            />
+            <span class="form-error" id="email-error"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="password" class="form-label">Пароль</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="Введите пароль"
+              required
+              autocomplete="current-password"
+            />
+            <span class="form-error" id="password-error"></span>
+          </div>
+
+          <button type="submit" class="form-submit" id="submit-button" disabled>
+            <span class="button-text">Войти</span>
+            <span class="button-loading">Загрузка...</span>
+          </button>
+
+          <div class="form-footer">
+            <p class="form-text">
+              Нет аккаунта?
+              <a href="registration.html" class="form-link" id="register-link"
+                >Зарегистрируйтесь</a
+              >
+            </p>
+          </div>
+
+          <div
+            class="form-message"
+            id="form-message"
+            role="alert"
+            aria-live="polite"
+          ></div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="frontend/src/scripts/index.js" defer></script>
 
     <template id="article-reading-template">
       <li class="readable-articles__element">

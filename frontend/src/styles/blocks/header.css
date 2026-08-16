@@ -1,26 +1,68 @@
 .header {
   border-bottom: var(--border-width) solid var(--text-color);
+  padding-block: calc(var(--spacing)*4);
+  padding-inline: calc(var(--spacing)*6);
+  font-size: 16px;
 }
 
-.header__home-link{
+.header__home-link {
   display: flex;
   align-items: center;
   gap: calc(var(--spacing)*2);
   text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+  font-size: inherit;
 }
 
-.icon-decorated {
-  inline-size: calc(var(--spacing)*7);
-  block-size: calc(var(--spacing)*7);
+.header__home-link:hover {
+  opacity: 0.7;
 }
 
-.icon-decorated > svg {
-  stroke-width: var(--border-width);
-  inline-size: calc(var(--spacing)*5);
-  block-size: calc(var(--spacing)*5);
+.header__home-link:active {
+  opacity: 0.5;
+}
+
+.header__home-link--disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.header__home-link--disabled .icon-decorated,
+.header__home-link--disabled .icon-title {
+  opacity: 1;
 }
 
 .header__login-button {
-  border-bottom: var(--border-width) solid var(--text-color);
+  border: none;
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 0;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  text-transform: none;
   cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.header__login-button:hover {
+  opacity: 0.7;
+}
+
+.header__login-button:active {
+  opacity: 0.5;
+}
+
+.header__login-button:focus-visible {
+  outline: 1px solid var(--text-color);
+  background: var(--accent-color);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .header {
+    padding-block: calc(var(--spacing)*3);
+    padding-inline: calc(var(--spacing)*4);
+  }
 }

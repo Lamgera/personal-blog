@@ -1,4 +1,45 @@
 .footer {
   border-top: var(--border-width) solid var(--text-color);
   color: var(--muted-text);
+  padding-block: calc(var(--spacing)*4);
+  padding-inline: calc(var(--spacing)*6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(var(--spacing)*4);
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.footer__left {
+  text-align: left;
+}
+
+.footer__right {
+  text-align: right;
+}
+
+.footer__right a:hover {
+  opacity: 0.7;
+}
+
+.footer__right a:focus-visible {
+  border: 1.5px solid var(--muted-text);
+  color: var(--text-color);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .footer {
+    padding-block: calc(var(--spacing)*3);
+    padding-inline: calc(var(--spacing)*4);
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer__left,
+  .footer__right {
+    text-align: center;
+    width: 100%;
+  }
 }

@@ -21,6 +21,7 @@
   height: calc(var(--spacing)*14);
   flex-shrink: 0; 
   background-color: var(--accent-color);
+  transition: padding 0.3s ease, height 0.3s ease;
 }
 
 .icon-decorated {
@@ -29,14 +30,26 @@
   align-items: center;
   background-color: var(--muted-background);
   border: var(--border-width) solid var(--text-color);
-  /* stroke-width: 2px; */
-  /* TO DO: дописать свойства для плейсхолдеров здесь, чтобы не переопределять их на 2х разных страницах */
+  inline-size: calc(var(--spacing)*7);
+  block-size: calc(var(--spacing)*7);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .icon-decorated > svg {
   stroke: var(--muted-text);
+  stroke-width: var(--border-width);
+  inline-size: calc(var(--spacing)*5);
+  block-size: calc(var(--spacing)*5);
+  transition: stroke 0.2s ease;
 }
 
 .muted-text {
   color: var(--muted-text);
+}
+
+/* Адаптивность для декоративных зон (Шапка и Подвал) */
+@media (max-width: 768px) {
+  .decorated-zone {
+    height: calc(var(--spacing)*10);
+  }
 }
