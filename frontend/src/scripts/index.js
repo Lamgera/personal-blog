@@ -28,6 +28,9 @@ const buttonLoading = submitButton.querySelector(".button-loading");
 const formMessage = loginModal.querySelector("#form-message");
 const emailError = loginModal.querySelector("#email-error");
 const passwordError = loginModal.querySelector("#password-error");
+const passwordToggle = loginModal.querySelector(".password-toggle");
+const eyeOpen = passwordToggle.querySelector(".eye-open");
+const eyeClosed = passwordToggle.querySelector(".eye-closed");
 
 // Кнопки для открытия модалки
 const openLoginButton = document.querySelector(".header__login-button");
@@ -132,7 +135,7 @@ const handleLoginFormSubmit = (evt) => {
   fetch(`${API_BASE_URL}/api/auth/signin`, {
     method: "POST",
     headers: { "Content-Type": "application/json",
-        'x-mock-response-code': 500 }, // x-mock-response-code для postman, для тестирования разных примеров - менять код
+        'x-mock-response-code': 200 }, // x-mock-response-code для postman, для тестирования разных примеров - менять код
     body: JSON.stringify(formData),
   })
     .then((response) => {
@@ -174,6 +177,20 @@ const isAuthenticated = () => {
   return localStorage.getItem("auth_token") !== null;
 };
 
+// Показать пароль (переключить input в type="text")
+const showPassword = () => {
+  passwordInput.type = "text";
+  eyeOpen.style.display = "none";
+  eyeClosed.style.display = "block";
+};
+
+// Скрыть пароль (переключить input в type="password")
+const hidePassword = () => {
+  passwordInput.type = "password";
+  eyeOpen.style.display = "block";
+  eyeClosed.style.display = "none";
+};
+
 // === Event Listeners ===
 
 // Отправка формы
@@ -199,6 +216,14 @@ passwordInput.addEventListener("input", () => {
 // Потеря фокуса пароля
 passwordInput.addEventListener("blur", () => {
   validateField(passwordInput, passwordError);
+});
+
+passwordToggle.addEventListener("click", () => {
+  if (passwordInput.type === "password") {
+    showPassword();
+  } else {
+    hidePassword();
+  }
 });
 
 // Открытие модалки по кнопке "Sign in"

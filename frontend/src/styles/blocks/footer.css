@@ -24,7 +24,7 @@
 }
 
 .footer__right a:focus-visible {
-  border: 1.5px solid var(--muted-text);
+  outline: 1.5px solid var(--muted-text);
   color: var(--text-color);
 }
 
