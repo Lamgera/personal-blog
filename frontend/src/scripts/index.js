@@ -15,7 +15,8 @@ const validationSettings = {
   errorClass: "form-error_visible",
 };
 
-const API_BASE_URL = "https://ff48b7b8-3885-4946-a1d2-99d06cec5301.mock.pstmn.io";
+const API_BASE_URL =
+  "https://ff48b7b8-3885-4946-a1d2-99d06cec5301.mock.pstmn.io";
 
 // DOM узлы
 const loginModal = document.getElementById("login-modal");
@@ -134,8 +135,10 @@ const handleLoginFormSubmit = (evt) => {
 
   fetch(`${API_BASE_URL}/api/auth/signin`, {
     method: "POST",
-    headers: { "Content-Type": "application/json",
-        'x-mock-response-code': 200 }, // x-mock-response-code для postman, для тестирования разных примеров - менять код
+    headers: {
+      "Content-Type": "application/json",
+      "x-mock-response-code": 200,
+    }, // x-mock-response-code для postman, для тестирования разных примеров - менять код
     body: JSON.stringify(formData),
   })
     .then((response) => {
@@ -251,6 +254,13 @@ if (isAuthenticated()) {
       localStorage.removeItem("auth_token");
       window.location.reload();
     });
+}
+
+// Автоматическое открытие модалки, если в URL есть hash #login
+if (window.location.hash === "#login") {
+  openLoginModal();
+  // Очищаем hash, чтобы при обновлении страницы модалка не открывалась снова
+  history.replaceState(null, "", window.location.pathname);
 }
 
 // Инициализация состояния кнопки при загрузке

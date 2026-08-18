@@ -10,11 +10,10 @@
   --container-sm: 24rem;
   --border-width: 1px;
 }
-
+ 
 /* @media (prefers-color-scheme: dark) {
   :root {
-  --background-color: #111110;
-  --text-color: #fff;
-  --accent-color: #f8f8f6;
+  --background-color: #6b6b65;
+  --text-color: #111110;
   }
 } */

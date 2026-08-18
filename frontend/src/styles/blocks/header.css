@@ -43,7 +43,7 @@
   text-transform: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .header__login-button:hover {
