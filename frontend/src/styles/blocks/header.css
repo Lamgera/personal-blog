@@ -1,4 +1,7 @@
 .header {
+  display: flex;
+  justify-content: space-between; /* ссылка слева, кнопка справа */
+  align-items: center;
   border-bottom: var(--border-width) solid var(--text-color);
   padding-block: calc(var(--spacing)*4);
   padding-inline: calc(var(--spacing)*6);
@@ -21,6 +24,11 @@
 
 .header__home-link:active {
   opacity: 0.5;
+}
+
+.header__home-link:focus-visible {
+  text-decoration: underline;
+  outline: none;
 }
 
 .header__home-link--disabled {
@@ -57,6 +65,196 @@
 .header__login-button:focus-visible {
   outline: 1px solid var(--text-color);
   background: var(--accent-color);
+}
+
+/* Прижимаем к правому краю и кнопку входа, и ссылку профиля */
+.header__login-button,
+.header__profile-link {
+  margin-inline-start: auto;
+}
+
+/* Ссылка на профиль в шапке */
+.header__profile-link {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 2);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Аватарка */
+.header__avatar {
+  inline-size: calc(var(--spacing) * 7);
+  block-size: calc(var(--spacing) * 7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--muted-background);
+  border: var(--border-width) solid var(--text-color);
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-color);
+  overflow: hidden;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Если позже сервер будет отдавать картинку аватарки */
+.header__avatar img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Ник пользователя */
+.header__username {
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-color);
+  border-bottom: var(--border-width) solid transparent;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.header__profile-link:hover .header__username {
+  border-bottom-color: var(--text-color);
+}
+
+.header__profile-link:focus-visible {
+  outline: var(--border-width) solid var(--text-color);
+  outline-offset: 2px;
+}
+
+.header__profile-link:active {
+  transform: scale(0.98);
+}
+
+/* Обёртка профиля (для позиционирования дропдауна) */
+.header__profile-wrapper {
+  position: relative;
+}
+
+/* Кнопка профиля: аватар + ник + стрелка */
+.header__profile-button {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 2);
+  padding: calc(var(--spacing) * 1);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.header__profile-button:hover {
+  background-color: var(--muted-background);
+}
+
+.header__profile-button:focus-visible {
+  outline: var(--border-width) solid var(--text-color);
+  outline-offset: 2px;
+}
+
+.header__profile-button:active {
+  transform: scale(0.98);
+}
+
+/* Аватарка */
+.header__avatar {
+  inline-size: calc(var(--spacing) * 7);
+  block-size: calc(var(--spacing) * 7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--muted-background);
+  border: var(--border-width) solid var(--text-color);
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+.header__avatar img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Ник пользователя */
+.header__username {
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-color);
+}
+
+/* Стрелка вниз */
+.header__arrow {
+  stroke: var(--text-color);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Поворот стрелки когда меню открыто */
+.header__profile-wrapper.open .header__arrow {
+  transform: rotate(180deg);
+}
+
+/* Выпадающее меню */
+.header__dropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing) * 2);
+  right: 0;
+  min-width: calc(var(--spacing) * 40);
+  background-color: var(--accent-color);
+  border: var(--border-width) solid var(--text-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0.2s;
+}
+
+.header__profile-wrapper.open .header__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Пункты меню */
+.header__dropdown-item {
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  color: var(--text-color);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border: none;
+  background-color: transparent;
+}
+
+.header__dropdown-item:hover {
+  background-color: var(--muted-background);
+}
+
+.header__dropdown-item:focus-visible {
+  outline: var(--border-width) solid var(--text-color);
+  outline-offset: -2px;
+}
+
+.header__dropdown-item:active {
+  background-color: color-mix(in srgb, var(--muted-background) 70%, var(--text-color) 10%);
+}
+
+/* Разделитель между пунктами */
+.header__dropdown-item--logout {
+  border-top: var(--border-width) solid var(--muted-background);
 }
 
 /* Адаптивность */

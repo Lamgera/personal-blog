@@ -160,7 +160,7 @@ const handleRegistrationFormSubmit = (evt) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-mock-response-code": 200,
+      "x-mock-response-code": 201,
     }, // x-mock-response-code для postman, для тестирования разных примеров - менять код
     body: JSON.stringify(formData),
   })
@@ -177,13 +177,13 @@ const handleRegistrationFormSubmit = (evt) => {
       // if (data.token) localStorage.setItem("auth_token", data.token);
 
       showFormMessage(
-        "Регистрация прошла успешно! Перенаправляем на вход...",
+        "Регистрация прошла успешно! Теперь вы можете войти в ваш аккаунт",
         "success",
       );
 
       setTimeout(() => {
-        window.location.href = "index.html"; // Перенаправление на страницу входа
-      }, 1500);
+        window.location.href = "index.html#login";
+      }, 5000);
     })
     .catch((error) => {
       const errorMessage = error.message || "Сервер не отвечает";

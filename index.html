@@ -24,6 +24,7 @@
         tabindex="-1"
       >
         <!-- чтобы сделать кнопку активной, уберите класс header__home-link--disabled и атрибуты aria-disabled и tabindex -->
+        <!-- вообще я бы её убрала или заменила на что-то, пока не удаляю но то что здесь это ссылка не имеет никакого смысла, может лучше сделать просто span и т.п. -->
         <div class="icon-decorated">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
@@ -37,7 +38,44 @@
         </div>
         <span class="icon-title">Your Personal Blog</span>
       </a>
-      <button class="header__login-button">Sing in / Sign up</button>
+      <!-- Кнопка входа (по умолчанию видима) -->
+      <button class="header__login-button">Sign in / Sign up</button>
+
+      <!-- Выпадающее меню профиля (по умолчанию скрыто) -->
+      <div class="header__profile-wrapper visually-hidden">
+        <button
+          type="button"
+          class="header__profile-button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label="Меню пользователя"
+        >
+          <div class="header__avatar"></div>
+          <span class="header__username"></span>
+          <svg
+            class="header__arrow"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- Выпадающее меню -->
+        <div class="header__dropdown">
+          <a href="profile.html" class="header__dropdown-item"> Мой профиль </a>
+          <button
+            type="button"
+            class="header__dropdown-item header__dropdown-item--logout"
+          >
+            Выйти
+          </button>
+        </div>
+      </div>
     </header>
 
     <div id="app-container" class="app-container">
@@ -248,12 +286,12 @@
             </p>
           </div>
 
-          <div
+          <span
             class="form-message"
             id="form-message"
             role="alert"
             aria-live="polite"
-          ></div>
+          ></span>
         </form>
       </div>
     </div>

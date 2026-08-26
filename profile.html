@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Профиль пользователя</title>
+    <link
+      rel="icon"
+      href="frontend/src/images/id-card.svg"
+      type="image/svg+xml"
+    />
+    <link rel="stylesheet" href="frontend/src/styles/index.css" />
+  </head>
+  <body class="page">
+    <!-- Хедер (полная копия структуры из index.html для единообразия) -->
+    <header class="header decorated-zone">
+      <a
+        href="#home"
+        class="header__home-link header__home-link--disabled"
+        aria-label="Вернуться на главную страницу"
+        aria-disabled="true"
+        tabindex="-1"
+      >
+        <!-- чтобы сделать кнопку активной, уберите класс header__home-link--disabled и атрибуты aria-disabled и tabindex -->
+        <!-- вообще я бы её убрала или заменила на что-то, пока не удаляю но то что здесь это ссылка не имеет никакого смысла, может лучше сделать просто span и т.п. -->
+        <div class="icon-decorated">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            ></path>
+            <polyline points="14,2 14,8 20,8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10,9 9,9 8,9"></polyline>
+          </svg>
+        </div>
+        <span class="icon-title">Your Personal Blog</span>
+      </a>
+      <!-- Кнопка входа (по умолчанию видима) -->
+      <button class="header__login-button">Sign in / Sign up</button>
+
+      <!-- Выпадающее меню профиля (по умолчанию скрыто) -->
+      <div class="header__profile-wrapper visually-hidden">
+        <button
+          type="button"
+          class="header__profile-button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label="Меню пользователя"
+        >
+          <div class="header__avatar"></div>
+          <span class="header__username"></span>
+          <svg
+            class="header__arrow"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- Выпадающее меню -->
+        <div class="header__dropdown">
+          <a href="profile.html" class="header__dropdown-item"> Мой профиль </a>
+          <button
+            type="button"
+            class="header__dropdown-item header__dropdown-item--logout"
+          >
+            Выйти
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="profile-container">
+      <!-- 1. Баннер -->
+      <div class="profile-banner">
+        <img
+          src="frontend/src/images/placeholder.png"
+          alt="Баннер профиля"
+          class="profile-banner__img"
+        />
+      </div>
+
+      <!-- 2. Шапка профиля (с ID для JS) -->
+      <section class="profile-header">
+        <div class="profile-header__info">
+          <img
+            src="frontend/src/images/placeholder.png"
+            alt="Аватар"
+            class="profile-avatar"
+            id="profile-avatar-img"
+          />
+          <div class="profile-header__text">
+            <h1 class="profile-nickname" id="profile-nickname">Загрузка...</h1>
+            <p class="profile-status" id="profile-status">
+              Загрузка статуса...
+            </p>
+          </div>
+        </div>
+
+        <div class="profile-header__actions">
+          <!-- Кнопка будет изменена JS на "Редактировать" для своего профиля -->
+          <button class="profile-action-btn" id="profile-action-btn">
+            Загрузка...
+          </button>
+
+          <!-- Кебаб-меню -->
+          <div class="kebab-menu">
+            <button
+              class="kebab-btn"
+              id="kebab-toggle"
+              aria-label="Дополнительные действия"
+            >
+              ⋮
+            </button>
+            <div class="kebab-dropdown" id="kebab-dropdown">
+              <button class="kebab-dropdown__item">Поделиться профилем</button>
+              <button class="kebab-dropdown__item text-danger">
+                Выйти из аккаунта
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Биография (с ID для JS) -->
+      <section class="profile-bio">
+        <h2 class="section-title">О себе</h2>
+        <p class="profile-bio__text" id="profile-bio">Загрузка биографии...</p>
+      </section>
+
+      <!-- 4. Список статей (контейнер для динамического рендеринга) -->
+      <section class="profile-articles">
+        <h2 class="section-title">Статьи автора</h2>
+        <div class="articles-scroll" id="profile-articles-list">
+          <!-- Карточки статей будут добавлены сюда через JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer decorated-zone">
+      <div class="footer__left">© 2026 Your Personal Blog</div>
+      <div class="footer__right">
+        Made by
+        <a href="https://github.com/Lamgera" target="_blank">Lamgera</a> &
+        <a href="https://github.com/EvgeniyCarrot" target="_blank"
+          >Evgeniy Carrot</a
+        >
+      </div>
+    </footer>
+
+    <!-- type="module" обязателен для работы import -->
+    <script type="module" src="frontend/src/scripts/profile.js"></script>
+  </body>
+</html>

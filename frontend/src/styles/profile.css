@@ -1,0 +1,212 @@
+/* Общий контейнер страницы */
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: calc(var(--spacing) * 6);
+  padding-block: calc(var(--spacing) * 10);
+}
+
+/* 1. БАННЕР */
+.profile-banner {
+  width: 100%; /* Растягиваем на всю ширину контейнера */
+  max-width: 100%; /* Убираем ограничение в 50% */
+  margin: 0 auto calc(var(--spacing) * 10);
+  border: var(--border-width) solid var(--text-color);
+  aspect-ratio: 4 / 1; /* Пропорции баннера */
+  overflow: hidden;
+  background-color: var(--muted-background);
+}
+
+.profile-banner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Картинка заполняет весь блок, обрезаясь по краям */
+  display: block;
+}
+
+/* 2. ШАПКА ПРОФИЛЯ */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: calc(var(--spacing) * 6);
+  margin-bottom: calc(var(--spacing) * 10);
+  flex-wrap: wrap;
+}
+
+.profile-header__info {
+  display: flex;
+  align-items: flex-end;
+  gap: calc(var(--spacing) * 6);
+}
+
+/* Аватар в стиле проекта (квадратный с рамкой) */
+.profile-avatar {
+  inline-size: calc(var(--spacing) * 24); /* 96px */
+  block-size: calc(var(--spacing) * 24);
+  border: var(--border-width) solid var(--text-color);
+  object-fit: cover;
+  background-color: var(--muted-background);
+}
+
+.profile-nickname {
+  font-family: var(--main-font);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+.profile-status {
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  color: var(--muted-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* 3. ДЕЙСТВИЯ (Кнопки и Кебаб-меню) */
+.profile-header__actions {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 4);
+}
+
+/* Кнопка действия (стилизует под .edit__nav-button / .read__nav-button) */
+.profile-action-btn {
+  padding-block: calc(var(--spacing) * 3);
+  padding-inline: calc(var(--spacing) * 6);
+  border: var(--border-width) solid var(--text-color);
+  background-color: var(--text-color);
+  color: var(--accent-color);
+  font-family: var(--main-font);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.profile-action-btn:hover {
+  background-color: color-mix(in srgb, var(--text-color) 80%, transparent);
+}
+
+.profile-action-btn:active {
+  transform: scale(0.98);
+}
+
+/* Модификатор для вторичной кнопки (например, "Редактировать") */
+.profile-action-btn--secondary {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+.profile-action-btn--secondary:hover {
+  background-color: var(--muted-background);
+}
+
+/* Кебаб-меню */
+.kebab-menu {
+  position: relative;
+}
+
+/* Кнопка кебаба в стиле .icon-decorated */
+.kebab-btn {
+  inline-size: calc(var(--spacing) * 10);
+  block-size: calc(var(--spacing) * 10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-color);
+  border: var(--border-width) solid var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.kebab-btn:hover {
+  background-color: var(--muted-background);
+}
+
+.kebab-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--spacing));
+  right: 0;
+  min-width: 220px;
+  background-color: var(--accent-color);
+  border: var(--border-width) solid var(--text-color);
+  z-index: 5;
+}
+
+.kebab-dropdown.is-open {
+  display: block;
+}
+
+.kebab-dropdown__item {
+  display: block;
+  width: 100%;
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+  text-align: left;
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  color: var(--text-color);
+  border-bottom: var(--border-width) solid var(--muted-background);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.kebab-dropdown__item:last-child {
+  border-bottom: none;
+}
+
+.kebab-dropdown__item:hover {
+  background-color: var(--muted-background);
+}
+
+/* Опасное действие */
+.text-danger {
+  color: #c44537;
+}
+
+/* 4. БИОГРАФИЯ */
+.profile-bio {
+  margin-bottom: calc(var(--spacing) * 10);
+  max-width: 800px;
+}
+
+.section-title {
+  font-family: var(--main-font);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: calc(var(--spacing) * 4);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.profile-bio__text {
+  font-family: var(--secondary-font);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* 5. СПИСОК СТАТЕЙ (ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ) */
+.profile-articles {
+  margin-top: calc(var(--spacing) * 10);
+}
+
+.articles-scroll {
+  display: flex;
+  gap: calc(var(--spacing) * 6);
+  overflow-x: auto;
+  padding-bottom: calc(var(--spacing) * 4);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-color) transparent;
+}
+
+/* Кастомный скроллбар

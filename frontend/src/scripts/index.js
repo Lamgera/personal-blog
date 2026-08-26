@@ -9,6 +9,13 @@ import {
   setCloseModalWindowEventListeners,
 } from "./components/modal.js";
 
+import {
+  saveAuthData,
+  getUserData,
+  isAuthenticated,
+  logout,
+} from "./components/auth.js";
+
 // Настройки стилей для валидации
 const validationSettings = {
   inputErrorClass: "form-input_type_error",
@@ -36,6 +43,13 @@ const eyeClosed = passwordToggle.querySelector(".eye-closed");
 // Кнопки для открытия модалки
 const openLoginButton = document.querySelector(".header__login-button");
 const editButton = document.querySelector('[data-navigate="editing"]');
+
+// Элементы меню профиля в шапке
+const profileWrapper = document.querySelector(".header__profile-wrapper");
+const profileButton = profileWrapper.querySelector(".header__profile-button");
+const profileAvatar = profileWrapper.querySelector(".header__avatar");
+const profileUsername = profileWrapper.querySelector(".header__username");
+const logoutButton = profileWrapper.querySelector(".header__dropdown-item--logout");
 
 // Получить текст ошибки
 const getInputErrorMessage = (input) => {
@@ -137,30 +151,30 @@ const handleLoginFormSubmit = (evt) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-mock-response-code": 200,
-    }, // x-mock-response-code для postman, для тестирования разных примеров - менять код
+    },
     body: JSON.stringify(formData),
   })
     .then((response) => {
-      // Сервер доступен, но отклонил запрос (4xx, 5xx)
       if (!response.ok) {
         return response.json().then((data) => {
           throw new Error(data.message || "Что-то пошло не так...");
         });
       }
-      // Успех (200–299)
       return response.json();
     })
     .then((data) => {
-      localStorage.setItem("auth_token", data.token);
-      showFormMessage("Вход выполнен успешно!", "success");
+      // Сохраняем оба токена + данные пользователя (включая роль)
+      saveAuthData(data);
+
+      // Используем сообщение от сервера, если оно есть
+      showFormMessage(data.message || "Вход выполнен успешно!", "success");
+
       setTimeout(() => {
         closeModalWindow(loginModal);
         window.location.reload();
       }, 1000);
     })
     .catch((error) => {
-      // Network Error / Server Error
       const errorMessage = error.message || "Сервер не отвечает";
       showFormMessage(errorMessage, "error");
       setLoading(false);
@@ -175,10 +189,56 @@ const openLoginModal = () => {
   emailInput.focus();
 };
 
-// Проверка авторизации пользователя
-const isAuthenticated = () => {
-  return localStorage.getItem("auth_token") !== null;
+/** Получить инициалы для аватарки-заглушки */
+const getInitials = (username) => username.charAt(0).toUpperCase();
+
+/** Открыть/закрыть дропдаун */
+const toggleProfileDropdown = () => {
+  const isOpen = profileWrapper.classList.toggle("open");
+  profileButton.setAttribute("aria-expanded", isOpen);
 };
+
+const closeProfileDropdown = () => {
+  profileWrapper.classList.remove("open");
+  profileButton.setAttribute("aria-expanded", "false");
+};
+
+if (isAuthenticated()) {
+  const user = getUserData();
+
+  if (user) {
+    // Скрываем кнопку входа, показываем меню профиля
+    openLoginButton.classList.add("visually-hidden");
+    profileWrapper.classList.remove("visually-hidden");
+
+    profileUsername.textContent = user.username;
+    profileAvatar.textContent = getInitials(user.username);
+
+    // Клик по кнопке профиля — открыть/закрыть меню
+    profileButton.addEventListener("click", (evt) => {
+      evt.stopPropagation();
+      toggleProfileDropdown();
+    });
+
+    // Клик вне меню — закрыть
+    document.addEventListener("click", (evt) => {
+      if (!profileWrapper.contains(evt.target)) {
+        closeProfileDropdown();
+      }
+    });
+
+    // Escape — закрыть
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape") closeProfileDropdown();
+    });
+
+    // Кнопка "Выйти"
+    logoutButton.addEventListener("click", () => {
+      logout();
+      window.location.reload();
+    });
+  }
+}
 
 // Показать пароль (переключить input в type="text")
 const showPassword = () => {

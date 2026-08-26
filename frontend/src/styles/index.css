@@ -9,5 +9,6 @@
 @import url('./blocks/footer.css');
 @import url('./blocks/modal.css');
 
-@import url('./blocks/registration.css');
+@import url('registration.css');
+@import url('profile.css');
 
